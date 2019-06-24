@@ -12,6 +12,9 @@ const controls = [
 // pass the add ingredient method with the type of control being clicked to the individual control
 const buildControls = props => (
   <div className={classes.BuildControls}>
+    <p>
+      Current Price: <strong>$ {props.price.toFixed(2)}</strong>
+    </p>
     {controls.map(ctrl => (
       <BuildControl
         key={ctrl.label}
