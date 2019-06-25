@@ -8,3 +8,50 @@
   margin: auto;
   padding: 10px 0;
 }
+
+.CurrentPrice {
+  margin-bottom: 4rem;
+}
+
+.OrderButton {
+  background-color: #dad735;
+  outline: none;
+  cursor: pointer;
+  border: 0.1rem solid #966909;
+  color: #966909;
+  font-family: inherit;
+  font-size: 2.5rem;
+  padding: 1.5rem 3rem;
+  box-shadow: 0.2rem 0.2rem 0.2rem #966909;
+  margin-top: 4rem;
+}
+
+.OrderButton:hover,
+.OrderButton:active {
+  background-color: #a0db41;
+  border: 0.1rem solid #966909;
+  color: #966909;
+}
+
+.OrderButton:disabled {
+  background-color: #c7c6c6;
+  cursor: not-allowed;
+  border: 0.1rem solid #ccc;
+  color: #888888;
+}
+
+.OrderButton:not(:disabled) {
+  animation: enable 0.3s linear;
+}
+
+@keyframes enable {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
