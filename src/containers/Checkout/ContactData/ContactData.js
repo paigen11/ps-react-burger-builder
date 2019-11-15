@@ -113,7 +113,7 @@ class ContactData extends Component {
       price: this.props.price,
       orderData: formData,
     };
-    console.log(order.orderData);
+    // console.log(order.orderData);
     // firebase endpoint is node-name-of-choice.json
     axios
       .post('/orders.json', order)
@@ -153,7 +153,7 @@ class ContactData extends Component {
     updatedFormElement.value = e.target.value;
     updatedFormElement.valid = this.checkValidity(
       updatedFormElement.value,
-      updatedFormElement.validation,
+      updatedFormElement.validation
     );
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
