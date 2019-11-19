@@ -16,14 +16,19 @@ export const purchaseBurgerFail = err => {
   };
 };
 
-export const purchaseBurgerStart = orderData => {
-  return dispatch => {
-    axios
-      .post('/orders.json', orderData)
-      .then(res => {
-        console.log(res.data);
-        dispatch(purchaseBurgerSuccess(res.data, orderData));
-      })
-      .catch(err => dispatch(purchaseBurgerFail(err)));
+export const purchaseBurgerStart = () => {
+  return {
+    type: actionTypes.PURCHASE_BURGER_START,
   };
+};
+
+export const purchaseBurger = orderData => dispatch => {
+  dispatch(purchaseBurgerStart());
+  axios
+    .post('/orders.json', orderData)
+    .then(res => {
+      console.log(res.data);
+      dispatch(purchaseBurgerSuccess(res.data, orderData));
+    })
+    .catch(err => dispatch(purchaseBurgerFail(err)));
 };
