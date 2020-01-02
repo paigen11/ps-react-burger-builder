@@ -5,6 +5,7 @@ import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+import { updateObject, checkValidity } from '../../../shared/utility';
 import * as actions from '../../../store/actions/index';
 import classes from './ContactData.css';
 
@@ -118,38 +119,21 @@ class ContactData extends Component {
     this.props.onOrderBurger(this.props.token, order);
   };
 
-  checkValidity(value, rules) {
-    let isValid = true;
-
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    return isValid;
-  }
-
   inputChangedHandler = (e, inputIdentifier) => {
-    const updatedOrderForm = {
-      ...this.state.orderForm,
-    };
-    const updatedFormElement = {
-      ...updatedOrderForm[inputIdentifier],
-    };
-    updatedFormElement.value = e.target.value;
-    updatedFormElement.valid = this.checkValidity(
-      updatedFormElement.value,
-      updatedFormElement.validation
+    const updatedFormElement = updateObject(
+      this.state.orderForm[inputIdentifier],
+      {
+        value: e.target.value,
+        valid: checkValidity(
+          e.target.value,
+          this.state.orderForm[inputIdentifier].validation
+        ),
+        touched: true,
+      }
     );
-    updatedFormElement.touched = true;
-    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    const updatedOrderForm = updateObject(this.state.orderForm, {
+      [inputIdentifier]: updatedFormElement,
+    });
 
     let formIsValid = true;
     for (let inputIdentifier in updatedOrderForm) {
@@ -204,7 +188,7 @@ const mapStateToProps = state => {
     price: state.burgerBuilder.totalPrice,
     loading: state.order.loading,
     token: state.auth.token,
-    userId: state.auth.uderId,
+    userId: state.auth.userId,
   };
 };
 
