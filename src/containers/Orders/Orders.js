@@ -6,7 +6,7 @@ import axios from '../../axios-orders';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-class Orders extends Component {
+const Orders = props => {
   componentDidMount() {
     this.props.onFetchOrders(this.props.token, this.props.userId);
   }
