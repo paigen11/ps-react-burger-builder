@@ -75,7 +75,7 @@ const BurgerBuilder = props => {
         />
       </Aux>
     );
-    if (state.loading) {
+    if (this.state.loading) {
       orderSummary = <Spinner />;
     }
     orderSummary = (
@@ -86,16 +86,16 @@ const BurgerBuilder = props => {
         price={props.price}
       />
     );
-
-    return (
-      <Aux>
-        <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
-          {orderSummary}
-        </Modal>
-        {burger}
-      </Aux>
-    );
   }
+
+  return (
+    <Aux>
+      <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
+        {orderSummary}
+      </Modal>
+      {burger}
+    </Aux>
+  );
 };
 
 const mapStateToProps = state => {
