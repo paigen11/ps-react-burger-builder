@@ -8,7 +8,7 @@ import * as actions from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 import classes from './Auth.css';
 
-const Auth = props => {
+class Auth extends Component {
   state = {
     controls: {
       email: {
