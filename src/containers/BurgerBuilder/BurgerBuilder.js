@@ -75,9 +75,7 @@ const BurgerBuilder = props => {
         />
       </Aux>
     );
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
-    }
+
     orderSummary = (
       <OrderSummary
         ingredients={props.ings}
